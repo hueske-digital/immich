@@ -53,6 +53,11 @@ services:
   database:
     container_name: immich_postgres
     image: tensorchord/pgvecto-rs:pg16-v0.2.1
+    labels:
+      ofelia.restart: "true"
+      ofelia.enabled: "true"
+      ofelia.job-exec.immichdbbackup.schedule: "0 0 1 * * *"
+      ofelia.job-exec.immichdbbackup.command: "sh -c 'pg_dumpall -U immich -f /var/lib/postgresql/data/backup.sql'"
     environment:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_USER: ${DB_USERNAME}
