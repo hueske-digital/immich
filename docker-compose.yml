@@ -6,7 +6,7 @@ services:
     networks:
       - default
       - proxy_apps
-    image: ghcr.io/immich-app/immich-server:v1.106.1
+    image: ghcr.io/immich-app/immich-server:v1.106.2
     devices:
       - /dev/dri:/dev/dri
     volumes:
@@ -23,7 +23,7 @@ services:
 
   immich-machine-learning:
     container_name: immich_machine_learning
-    image: ghcr.io/immich-app/immich-machine-learning:v1.106.1
+    image: ghcr.io/immich-app/immich-machine-learning:v1.106.2
     volumes:
       - model_cache:/cache
     env_file:
