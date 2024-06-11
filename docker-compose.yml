@@ -6,26 +6,9 @@ services:
     networks:
       - default
       - proxy_apps
-    image: ghcr.io/immich-app/immich-server:v1.105.1
-    command: ['start.sh', 'immich']
-    volumes:
-      - upload_data:/usr/src/app/upload
-      - /etc/localtime:/etc/localtime:ro
-      - photoprism_app_originals:/mnt/photoprism:ro
-    env_file:
-      - .env
-    depends_on:
-      - redis
-      - database
-    restart: unless-stopped
-    cpus: 1.0
-
-  immich-microservices:
-    container_name: immich_microservices
-    image: ghcr.io/immich-app/immich-server:v1.105.1
+    image: ghcr.io/immich-app/immich-server:v1.106.1
     devices:
       - /dev/dri:/dev/dri
-    command: ['start.sh', 'microservices']
     volumes:
       - upload_data:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
@@ -40,7 +23,7 @@ services:
 
   immich-machine-learning:
     container_name: immich_machine_learning
-    image: ghcr.io/immich-app/immich-machine-learning:v1.105.1
+    image: ghcr.io/immich-app/immich-machine-learning:v1.106.1
     volumes:
       - model_cache:/cache
     env_file:
