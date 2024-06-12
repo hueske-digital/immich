@@ -8,7 +8,7 @@ fi
 IFS=',' read -ra ID_ARRAY <<< "$LIBRARY_IDS"
 for id in "${ID_ARRAY[@]}"; do
   echo "Führe API-Aufruf für Library-ID $id aus..."
-  RESPONSE=$(curl --location --request POST "$BASE_URL/api/library/$id/removeOffline" \
+  RESPONSE=$(curl --location --request POST "$BASE_URL/api/libraries/$id/removeOffline" \
                   --header "x-api-key: $API_TOKEN" \
                   --header "User-Agent: RemoveOfflineCron" \
                   --silent --output /dev/null --write-out "%{http_code} %{json}")
