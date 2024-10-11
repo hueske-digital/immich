@@ -52,19 +52,6 @@ services:
       - db_data:/var/lib/postgresql/data
     restart: unless-stopped
 
-  offlineremover:
-    image: ghcr.io/hueske-digital/immich:removeoffline
-    labels:
-      ofelia.restart: "true"
-      ofelia.enabled: "true"
-      ofelia.job-exec.immichofflineremover.schedule: "0 40 * * * *"
-      ofelia.job-exec.immichofflineremover.command: "sh -c 'bash /removeofflineimages.sh'"
-    environment:
-      - API_TOKEN
-      - LIBRARY_IDS
-      - BASE_URL
-    restart: unless-stopped
-
 networks:
   proxy_apps:
     name: proxy_apps
