@@ -12,7 +12,7 @@ services:
     volumes:
       - upload_data:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
-      - photoprism_app_originals:/mnt/photoprism:ro
+      - photoprism_app_originals:/mnt/photoprism
     env_file:
       - .env
     depends_on:
