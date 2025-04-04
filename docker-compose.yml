@@ -51,10 +51,10 @@ services:
     image: tensorchord/pgvecto-rs:pg16-v0.2.1
     <<: *default-service-config
     labels:
-      ofelia.restart: "true"
-      ofelia.enabled: "true"
-      ofelia.job-exec.immichdbbackup.schedule: "0 0 1 * * *"
-      ofelia.job-exec.immichdbbackup.command: "sh -c 'pg_dumpall -U immich -f /var/lib/postgresql/data/backup.sql'"
+      - ofelia.restart=true
+      - ofelia.enabled=true
+      - "ofelia.job-exec.${COMPOSE_PROJECT_NAME}dbbackup.schedule=0 0 1 * * *"
+      - "ofelia.job-exec.${COMPOSE_PROJECT_NAME}dbbackup.command=sh -c 'pg_dumpall -U immich -f /var/lib/postgresql/data/backup.sql'"
     environment:
       POSTGRES_PASSWORD: immich
       POSTGRES_USER: immich
