@@ -1,1 +1,2 @@
-Proxy to *-app-1:3001
+- Proxy to *-app-1:2283
+- Set machine-learning url to http://*-machinelearning-1:3003
