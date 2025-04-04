@@ -1,1 +1,1 @@
-Port 3001 to immich_server
+Proxy to *-app-1:3001

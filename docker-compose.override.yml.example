@@ -1,0 +1,8 @@
+# Mount custom folders for external libraries (see: https://immich.app/docs/features/libraries)
+# Start with docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
+
+services:
+  app:
+    volumes:
+      - /home/thueske/services/samba/shares/gemeinsam/Fotos:/mnt/fotos-gemeinsam
+      - /home/thueske/services/samba/shares/tobias/Fotos:/mnt/fotos-tobi
