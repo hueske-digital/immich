@@ -1,8 +1,26 @@
-# Mount custom folders for external libraries (see: https://immich.app/docs/features/libraries)
 # Start with docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
-
+# Mount custom folders for external libraries (see: https://immich.app/docs/features/libraries)
 services:
   app:
     volumes:
       - /home/thueske/services/samba/shares/gemeinsam/Fotos:/mnt/fotos-gemeinsam
       - /home/thueske/services/samba/shares/tobias/Fotos:/mnt/fotos-tobi
+  sftp:
+    image: ghcr.io/hueske-digital/sftp:latest
+    restart: unless-stopped
+    volumes:
+      - sftp_keys:/etc/ssh
+      - /home/thueske/services/samba/shares/tobias/Fotos/Immich:/home/${SFTP_USERNAME}/import
+      - $PWD/publickeys:/home/${SFTP_USERNAME}/.ssh/keys:ro
+    ports:
+      - "2223:22"
+    networks:
+      - default
+    command: ${SFTP_USERNAME}:${SFTP_PASSWORD}:1000
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+
+volumes:
+  sftp_keys:
