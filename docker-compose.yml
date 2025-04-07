@@ -46,6 +46,9 @@ services:
 
   cache:
     image: redis:7-alpine
+    <<: *default-service-config
+    networks:
+      - default
 
   database:
     image: tensorchord/pgvecto-rs:pg16-v0.2.1
