@@ -45,7 +45,7 @@ services:
       - IMMICH_LOG_LEVEL=warn
 
   cache:
-    image: redis:7-alpine
+    image: valkey/valkey
     <<: *default-service-config
     networks:
       - default
