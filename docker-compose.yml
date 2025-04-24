@@ -45,7 +45,7 @@ services:
       - IMMICH_LOG_LEVEL=warn
 
   cache:
-    image: valkey/valkey
+    image: valkey/valkey:alpine
     <<: *default-service-config
     networks:
       - default
