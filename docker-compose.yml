@@ -51,7 +51,7 @@ services:
       - default
 
   database:
-    image: tensorchord/pgvecto-rs:pg16-v0.2.1
+    image: ghcr.io/immich-app/postgres:16-vectorchord0.3.0-pgvector0.8.0-pgvectors0.2.1
     <<: *default-service-config
     labels:
       - ofelia.restart=true
