@@ -24,12 +24,15 @@ services:
       - DB_DATABASE_NAME=immich
       - REDIS_HOSTNAME=cache
       - IMMICH_LOG_LEVEL=warn
+      - CADDY_DOMAIN=${CADDY_DOMAIN}
+      - CADDY_TYPE=${CADDY_TYPE:-internal}
+      - CADDY_PORT=${CADDY_PORT:-2283}
     depends_on:
       - cache
       - database
     networks:
       - default
-      - proxy_apps
+      - caddy
 
   machinelearning:
     image: ghcr.io/immich-app/immich-machine-learning:release
@@ -67,9 +70,7 @@ services:
 
 networks:
   default:
-  proxy_apps:
-    name: proxy_apps
-    external: true
+  caddy:
 
 volumes:
   model_cache:
